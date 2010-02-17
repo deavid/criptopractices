@@ -1,0 +1,32 @@
+***********************************************
+CryptoPractices
+***********************************************
+
+### ESPAÑOL ###
+
+Este repositorio está orientado a contener distintas pruebas de concepto a la
+hora de aprender cómo funciona la criptografía internamente.
+
+Todos los programas aquí deben entenderse como de aprendizaje y nunca deben ser
+usados en sistemas reales por diversos motivos:
+ * Son infinitamente más lentos
+ * Probablemente contienen agujeros gordos de seguridad 
+   o fallas en la implementación
+ * Tienen reemplazo dentro del mundo de la criptografía 
+   (no hemos inventado nada nuevo)
+
+
+### ENGLISH ###
+
+This repo is aimed to learn several concepts about internal things in 
+cryptosystems,
+
+Every piece of software included here is intended in the hope to be useful to 
+others only for learning, and never should be used because several reasons you 
+should be aware of:
+  * Incredibly low performance
+  * Probably they have bugs. 
+  * Probably they aren't secure (cryptographically speaking).
+  * They could be replaced by other known techniques that are faster and safer.
+    (I didn't created nothing new)
+
