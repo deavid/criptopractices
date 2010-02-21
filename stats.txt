@@ -1,0 +1,517 @@
+
+SHA1 (referencia) ->
+
+17368 dups
+max dup len: 8.00   average dup len: 2.39   average len: 1.58
+24105 unused
+
+
+Continuo ->
+
+17320 dups
+max dup len: 7.00   average dup len: 2.39   average len: 1.58
+24015 unused
+
+
+reseteado (baraja 1 vez)->
+
+1622 dups                                                   
+max dup len: 256.00   average dup len: 40.40   average len: 40.40
+63914 unused
+
+
+reseteado (baraja 32 veces)->
+
+2996 dups
+max dup len: 217.00   average dup len: 20.86   average len: 10.85
+59496 unused
+
+reseteado (baraja 2 veces, factor 1000)->
+6206 dups                                                   
+max dup len: 131.00   average dup len: 7.40   average len: 2.54
+39699 unused         
+
+reseteado (baraja 4 veces, factor 1000, 3*2*3, mas entropía mejorada.)->
+3984 dups
+max dup len: 48.00   average dup len: 16.45   average len: 16.45
+61552 unused
+
+reseteado (baraja 3 veces, factor 1000, 2*2*1, entropia mejorada.)->
+6608 dups
+max dup len: 147.00   average dup len: 7.38   average len: 2.81
+42187 unused
+
+reseteado (baraja 6 veces, factor 5000, 3*1*1, entropia mejorada.)->
+5572 dups
+max dup len: 83.00   average dup len: 9.72   average len: 3.86
+48561 unused
+
+
+reseteado (baraja 6 veces, factor 5000, 3*6*4, entropia directa desde urandom.)->
+17199 dups
+max dup len: 8.00   average dup len: 2.40   average len: 1.58
+24073 unused
+
+reseteado (baraja 1 vez, factor 1, 3*1*1, entropia directa desde urandom.)->
+15898 dups
+max dup len: 20.00   average dup len: 3.61   average len: 2.72 /* ¿¡pierde entropía!? prbably hay más estados que bytes de entrada.*/
+41431 unused
+
+reseteado (baraja 1 vez, factor 1, 4*1*1,  entropia k+urandom.)->
+17400 dups
+max dup len: 7.00   average dup len: 2.39   average len: 1.59
+24250 unused
+
+reseteado (baraja 5 veces, factor 100, 3*2*2,  (entropia k+urandom) * 3.)->
+17412 dups
+max dup len: 7.00   average dup len: 2.39   average len: 1.59
+24279 unused
+
+concatenado -- wtf.
+603 dups
+max dup len: 464.00   average dup len: 108.68   average len: 108.68
+64933 unused
+
+reseteado (3 it, fact 10, 6*4, entropía sha512) ->
+17157 dups
+max dup len: 8.00   average dup len: 2.40   average len: 1.58
+24003 unused
+
+reseteado (1 it, fact 10, 2*2, entropía sha1) ->
+17413 dups
+max dup len: 7.00   average dup len: 2.38   average len: 1.58
+24070 unused
+
+reseteado (0 it, fact 10, 2*2, entropía md5) ->
+17236 dups
+max dup len: 9.00   average dup len: 2.52   average len: 1.67
+26257 unused
+
+reseteado (0 it, fact 10, 6*1, entropía md5) ->
+17306 dups
+max dup len: 8.00   average dup len: 2.39   average len: 1.58
+24086 unused
+
+reseteado (0 it, fact 10, 12*1, entropía k*[primos256..512]) ->
+8570 dups
+max dup len: 45.00   average dup len: 6.08   average len: 2.98
+43520 unused
+
+reseteado (0 it, fact 10, 3*6*1, entropía k*[primos256..]) ->
+7846 dups
+max dup len: 57.00   average dup len: 6.20   average len: 2.65
+40779 unused
+
+reseteado (0 it, fact 10, 3*6*1, entropía (i*p+i//p) for p in [primos256..]) -> 
+12382 dups
+max dup len: 27.00   average dup len: 3.99   average len: 2.29
+36976 unused
+
+reseteado (3 it, fact 1099, 3*6*1, entropía (i*p+i//p) for p in [primos256..]) -> 
+17278 dups
+max dup len: 8.00   average dup len: 2.42   average len: 1.60
+24494 unused
+
+reseteado (0 it, fact 1099, 3*6*1, entropía (i*p+i//p) for p in [primos256..]) -> (nuevo XOR)
+17246 dups
+max dup len: 7.00   average dup len: 2.40   average len: 1.58
+24124 unused
+
+reseteado (0 it, fact 1099, 3*6*1, entropía (i*p+i//p) for p in [primos256..]) -> (nuevo XOR*3)
+17295 dups
+max dup len: 8.00   average dup len: 2.39   average len: 1.58
+24015 unused
+
+reseteado (1 it, fact 2000, (1)*6*1, entropía k) -> (nuevo XOR*3*2)
+17265 dups
+max dup len: 7.00   average dup len: 2.39   average len: 1.58
+23955 unused
+
+
+---------------------------- TEST a 2 repetciones ----------------------------
+referencia MD5 ->
+21139 dups
+max dup len: 10.00   average dup len: 3.685    average len: 2.315    global len: 2.000
+26693 unused
+
+referencia SHA1 ->
+21150 dups
+max dup len: 11.00   average dup len: 3.680    average len: 2.314    global len: 2.000
+26626 unused
+
+referencia SHA256 ->
+21144 dups
+max dup len: 10.00   average dup len: 3.671    average len: 2.311    global len: 2.000
+26511 unused
+
+reseteado (1 it, fact 2000, (1)*6*1, entropía k) -> 
+21222 dups
+max dup len: 10.00   average dup len: 3.679    average len: 2.318    global len: 2.000
+26644 unused
+
+reseteado (4 it, fact 200, (1)*6*1, entropía k) -> 
+21218 dups
+max dup len: 11.00   average dup len: 3.675    average len: 2.314    global len: 2.000
+26646 unused
+
+reseteado (0 it, (1)*6*1, entropía k) -> 
+21187 dups
+max dup len: 10.00   average dup len: 3.669    average len: 2.313    global len: 2.000
+26494 unused
+
+reseteado (0 it, (1)*6*1, entropía k) ->  (primes: 2,3)
+21066 dups
+max dup len: 11.00   average dup len: 3.681    average len: 2.314    global len: 2.000
+26516 unused
+
+reseteado (1 it, fact 1000, (1)*6*1, entropía k) -> (primes: 2,3)
+21332 dups
+max dup len: 10.00   average dup len: 3.673    average len: 2.317    global len: 2.000
+26720 unused
+
+reseteado (1 it, fact 1000, (1)*6*1, entropía k) -> (primes: 2,3,5,7)
+21266 dups
+max dup len: 10.00   average dup len: 3.670    average len: 2.312    global len: 2.000
+26683 unused
+
+reseteado (1 it, fact 1000, (1)*6*1, entropía "a"+k+"!"+k+"."+k) -> (primes: 2,3,5,7)
+21022 dups  <- ojo! muy bajo.
+max dup len: 11.00   average dup len: 3.690    average len: 2.313    global len: 2.000
+26655 unused
+
+
+
+---------------------------- TEST a 8 repeticiones --------------------------
+
+referencia MD5 ->
+26815 dups
+max dup len: 24.00   global len: 8.000    extra dup len: 2.725266    extra len: 0.002686
+29638 unused
+
+referencia SHA1 ->
+26737 dups
+max dup len: 24.00   global len: 8.000    extra dup len: 2.733702    extra len: 0.003175
+29557 unused
+
+referencia SHA256 ->
+26607 dups
+max dup len: 24.00   global len: 8.000    extra dup len: 2.740820    extra len: 0.003053
+29753 unused
+
+reseteado (1 it, fact 1000, (1)*6*1, entropía k) -> (primes: 2,3,5,7)
+26671 dups
+max dup len: 22.00   global len: 8.000    extra dup len: 2.740692    extra len: 0.002686
+29649 unused
+
+reseteado (1 it, fact 1000, (1)*6*1, entropía "a"+k+"!"+k+"."+k) -> (primes: 2,3,5,7)
+26602 dups
+max dup len: 26.00   global len: 8.000    extra dup len: 2.756823    extra len: 0.002198
+29797 unused
+
+reseteado (0 it, (1)*6*1, entropía "a"+k+"!"+k+"."+k) -> (primes: 2,3,5,7)
+26739 dups
+max dup len: 23.00   global len: 8.000    extra dup len: 2.746400    extra len: 0.003053
+29732 unused
+
+
+---------------------------- TEST a 64 repeticiones --------------------------
+referencia /dev/urandom (1) ->
+duplic (1: 30618, 2: 27435, 4: 21364, 16: 2035)
+unused (1: 31656, 2: 28399, 4: 22187, 16: 1497)
+
+referencia /dev/urandom (2) ->
+duplic (1: 30739, 2: 27451, 4: 21328, 16: 1890)
+unused (1: 31527, 2: 28287, 4: 21995, 16: 1495)
+
+referencia /dev/urandom (3) ->
+duplic (1: 30657, 2: 27473, 4: 21412, 16: 1945)
+unused (1: 31681, 2: 28479, 4: 22183, 16: 1485)
+
+referencia /dev/urandom (4) ->
+duplic (1: 30536, 2: 27311, 4: 21267, 16: 1969)
+unused (1: 31678, 2: 28344, 4: 21963, 16: 1522)
+
+referencia MD5 ->
+duplic (1: 30508, 2: 27316, 4: 21301, 16: 1937)
+unused (1: 31692, 2: 28472, 4: 22109, 16: 1447)
+
+referencia SHA1 ->
+duplic (1: 30689, 2: 27486, 4: 21311, 16: 1844)
+unused (1: 31576, 2: 28199, 4: 21976, 16: 1500)
+
+referencia SHA256 ->
+duplic (1: 30700, 2: 27458, 4: 21332, 16: 1898)
+unused (1: 31584, 2: 28316, 4: 22145, 16: 1485)
+
+reseteado (0 it, (1)*6*1, entropía "a"+k+"!"+k+"."+k) -> (primes: 2,3,5,7)
+duplic (1: 30488, 2: 27279, 4: 21274, 16: 2009)
+unused (1: 31753, 2: 28396, 4: 22066, 16: 1490)
+
+------------------------------- TEST a 2 repeticiones, sz 3 -----------------------
+referencia /dev/urandom ->
+duplic (1: 21096, 2: 9332, 4: 1086, 16: 0)
+unused (1: 26552, 2: 8831, 4: 65536, 16: 65536)
+max dup len: 12.00   global len: 2.000  extra len: 2.311472, 3.677237
+
+referencia MD5 ->
+duplic (1: 21185, 2: 9462, 4: 1096, 16: 0)
+unused (1: 26717, 2: 8908, 4: 65536, 16: 65536)
+max dup len: 11.00   global len: 2.000  extra len: 2.314615, 3.681614
+
+reseteado (0 it, (1)*6*1, entropía "a"+k+"!"+k+"."+k) -> (primes: 2,3,5,7)
+duplic (1: 21079, 2: 9426, 4: 1185, 16: 0)
+unused (1: 26686, 2: 9072, 4: 65536, 16: 65536)
+max dup len: 11.00   global len: 2.000  extra len: 2.321337, 3.696380
+
+
+--------------------------- Test de patrones, fichero random2 ---------------------
+
+0.5Mb                                                                        
+1.0Mb                                                                        
+1.5Mb                                                                        
+2.0Mb                                                                        
+2.5Mb                                                                        
+3.0Mb                                                                        
+3.5Mb                                                                        
+4.0Mb                                                                        
+4.5Mb                                                                        
+5.0Mb                                                                        
+5.5Mb                                                                        
+6.0Mb                                                                        
+6.5Mb                                                                        
+7.0Mb                                                                        
+(71, 'DE64')                                                                 
+(74, '02A2')                                                                 
+(74, '0DEE')                                                                 
+(75, '6E5A')                                                                 
+(76, '0B29')                                                                 
+(76, '1843')                                                                 
+(76, '3D0B')                                                                 
+(76, '44A5')                                                                 
+(76, '5D0E')                                                                 
+(76, 'AAB9')                                                                 
+(77, '25EA')                                                                 
+(77, '453C')                                                                 
+(77, '485E')                                                                 
+(77, '6757')                                                                 
+(77, '8363')                                                                 
+(77, 'FBF2')                                                                 
+(78, '0141')                                                                 
+(78, '043D')                                                                 
+(78, '1EEB')                                                                 
+(78, '2507')                                                                 
+(78, '26DF')                                                                 
+(78, '31BF')                                                                 
+(78, '3F2D')                                                                 
+(78, '7510')                                                                 
+(78, '888D')                                                                 
+(78, '8FA2')                                                                 
+(78, 'B443')                                                                 
+(78, 'C4EE')                                                                 
+(78, 'C8AC')                                                                 
+(78, 'D896')                                                                 
+(79, '3B23')                                                                 
+(79, '5607')                                                                 
+...                                                                          
+(148, 'FC1D')                                                                
+(149, '0806')                                                                
+(149, '4BF6')                                                                
+(149, '528A')                                                                
+(149, '5DB2')                                                                
+(149, '8153')                                                                
+(149, 'AB09')                                                                
+(149, 'AD33')                                                                
+(149, 'D378')                                                                
+(149, 'D5DE')                                                                
+(150, '046D')                                                                
+(150, '1692')                                                                
+(150, '4370')                                                                
+(150, '467D')                                                                
+(150, '7B35')
+(150, '9E1E')
+(150, 'ED85')
+(151, '002F')
+(151, '374E')
+(151, '5498')
+(151, '7C1E')
+(151, '9C97')
+(151, 'D977')
+(151, 'EB14')
+(152, '6266')
+(152, '90D3')
+(153, '2E40')
+(153, 'ED1D')
+(154, 'B614')
+(156, 'B0CA')
+(159, 'FA6B')
+(160, '938B')
+total 65536 in set.
+7340032 bytes read
+
+
+------------------------------------------------- random3
+0.5Mb                                                
+1.0Mb                                                
+1.5Mb                                                
+2.0Mb                                                
+2.5Mb                                                
+3.0Mb                                                
+3.5Mb                                                
+4.0Mb                                                
+4.5Mb                                                
+5.0Mb                                                
+5.5Mb                                                
+6.0Mb                                                
+6.5Mb                                                
+7.0Mb                                                
+(68, '4C83')                                         
+(72, '2C8F')                                         
+(72, 'F642')                                         
+(73, '5071')                                         
+(73, 'D48D')                                         
+(74, '8CE7')                                         
+(76, '3109')                                         
+(76, '3F8A')                                         
+(76, '7A4F')                                         
+(77, '2497')                                         
+(77, '8A7B')                                         
+(77, '983D')                                         
+(77, 'BECF')                                         
+(77, 'FA2C')                                         
+(77, 'FE5F')                                         
+(78, '294C')                                         
+(78, '788C')                                         
+(78, '7C16')                                         
+(78, 'B283')                                         
+(78, 'F2F3')                                         
+(78, 'FD82')                                         
+(78, 'FF3F')                                         
+(79, '0BF2')                                         
+(79, '1921')                                         
+(79, '35F4')                                         
+(79, '3B45')                                         
+(79, '4117')                                         
+(79, '4856')                                         
+(79, '4E2B')                                         
+(79, '595C')                                         
+(79, '78E8')                                         
+(79, '8D37')                                         
+...                                                  
+(149, '5D0C')                                        
+(149, '61F9')                                        
+(149, '7235')                                        
+(149, '91E3')                                        
+(149, 'CBDE')                                        
+(149, 'CD95')                                        
+(150, '3689')                                        
+(150, '430E')                                        
+(150, 'B26C')                                        
+(150, 'D8D8')                                        
+(151, '0079')                                        
+(151, '86E0')                                        
+(151, 'AA2E')                                        
+(151, 'B19A')                                        
+(151, 'ECD8')
+(152, '103B')
+(152, '591B')
+(152, '5F3E')
+(152, '9092')
+(153, '6009')
+(153, '84E0')
+(153, 'FA05')
+(154, '94A9')
+(155, '4A84')
+(155, '62EA')
+(156, '2EE8')
+(158, '3D1B')
+(158, 'E59F')
+(158, 'FE9D')
+(159, '2F8C')
+(159, '4C20')
+(159, 'EE97')
+total 65536 in set.
+7340032 bytes read.
+
+------------------------------------- random4
+
+0.5Mb                                                
+1.0Mb                                                
+1.5Mb                                                
+2.0Mb                                                
+2.5Mb                                                
+3.0Mb                                                
+3.5Mb                                                
+4.0Mb                                                
+4.5Mb                                                
+5.0Mb                                                
+5.5Mb                                                
+6.0Mb                                                
+6.5Mb                                                
+7.0Mb                                                
+(71, 'DB7A')                                         
+(72, '3C18')                                         
+(72, 'DCE4')                                         
+(73, '5407')                                         
+(73, '9ACD')                                         
+(74, '0FC5')                                         
+(74, '18B9')                                         
+(74, '8900')                                         
+(74, 'D4C1')                                         
+(75, '5791')                                         
+(75, '5C4B')                                         
+(75, '936D')                                         
+(76, '113E')                                         
+(76, '2749')                                         
+(76, '5FD1')                                         
+(76, '9140')                                         
+(76, '91E4')                                         
+(76, 'CF5A')                                         
+(77, '05F9')                                         
+(77, '43BF')                                         
+(77, '5D06')                                         
+(77, 'AEC9')                                         
+(77, 'B1C9')                                         
+(77, 'C7A9')                                         
+(77, 'E840')                                         
+(77, 'F66F')                                         
+(78, '064D')                                         
+(78, '1CE6')                                         
+(78, '309A')                                         
+(78, '8735')                                         
+(78, 'A234')                                         
+(78, 'AD0A')                                         
+...                                                  
+(149, 'E706')                                        
+(150, '0486')                                        
+(150, '053A')                                        
+(150, '0E7B')                                        
+(150, '0E9D')                                        
+(150, '16C3')                                        
+(150, '359E')                                        
+(150, '5967')                                        
+(150, 'BCA6')                                        
+(151, '1A28')                                        
+(151, '1F9F')                                        
+(151, '3DE4')                                        
+(151, '69A9')                                        
+(151, 'AD5B')                                        
+(151, 'AE65')
+(151, 'DA0A')
+(152, '1C68')
+(152, '738F')
+(152, 'EF51')
+(152, 'F8C6')
+(152, 'FCB6')
+(153, '0CCE')
+(153, '1E0A')
+(153, '3033')
+(153, '9881')
+(154, '424F')
+(154, '8621')
+(154, 'C1C7')
+(155, '2409')
+(155, '39FD')
+(157, '839A')
+(158, '5F30')
+total 65536 in set.
+7340032 bytes read.

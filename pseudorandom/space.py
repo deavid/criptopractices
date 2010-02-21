@@ -1,4 +1,5 @@
 import os, sys
+from base64 import b64encode,b64decode
 
 class SpaceObject:
     dim_for_size = {
@@ -31,6 +32,7 @@ class SpaceObject:
         
         self.init_object(object)
         self.mass = sum(object)/len(object)/2**value_size
+        if self.mass < 1 : self.mass = 1
     
     def get_state(self):
         pst = [ "%.6f" % (float(pos)/16**self.entropy_position) for pos in self.position ]
@@ -107,19 +109,49 @@ class Random:
         self.lastnum = 0
         self.xoraccums = {
         }
-        self.primes = [2,3,5,7,11,13,17,19,23,29]
+        self.primes = [
+            2,3,
+            5,7,
+            #11,13,17,
+            #19,23,29,
+            ]
         self.buffer = ""
         for p in self.primes:
             self.xoraccums[p] = list(range(p))
-        
+        #v_in = b64decode(b'/l1Jy0B8Nv73SE0KxXAQzXe13BpSIrN0wdG7jUuydn1wfEi0CT0sxSikuT6UDCB10wBcHfR6OLVLRXZKcmHijxvtGLAC64dtV6w9RhZMvbav1+0m5oOUTv7fOfGUDEeYCyHS1y8zEJc5SxqE4CUPdKrQgBsd+NkuGi0uqV1iYexQR3zzsAQW85hDznAmfgo6iy52/DUdDSMuZFxx4wZ8KzEXCJrl6Xf6Y3wDF1SnoJBdZrzsb4iPVPPg0BMp9R/KxmpskIUgOFwCzgGUFYn9FXwYVIV7Qu6nMBzxkxJWjyaCobgpEiLNEvEYz2QUXo+ki8x6RmzKkqlDtK02vaoMsN1410UcOMSyGEPVJbZM6Rknw/wA59m5Va8S68BeJSwR/A7437ZLjUR2r51UXObTHYZPSkRoAFU2EwM2/p4l9QvRmw+NcmsBIa0ybwGHGKmUxLX5zieOwuaVTCTfBOuZWYxdAEBIwlS4LSJKqcDCeE5Rbok5kqRXA6annXsSzpWF')
+
+        #self.add_entropy(v_in[:self.padding*3])
 
 
     def add_entropy(self,input_data):
+        input_data = list(input_data)
         extra_input = len(input_data) % self.padding
-
+        min_slices = 1
+        pre_slices = len(input_data)//self.padding 
+        konkatenar = list("era8324dsfgz9o845v3v26q5agzvzsdfsd425vb1745801475145be")
+        if extra_input>0: extra_input = self.padding-extra_input
+        if pre_slices < min_slices:
+            extra_input+=self.padding*(min_slices-pre_slices)
         if extra_input>0:
-            input_data = input_data + b" " * (self.padding-extra_input)
+            input_data = input_data + konkatenar[:extra_input]
+        desp_bits3 = 1
+        for i in range(3):
+            for idx, c in enumerate(input_data):
+                self.icycle += 1
+                newnum = ord(c)
+                for k in self.xoraccums:
+                    i = self.xoraccums[k]
+                    m = self.icycle % k
+                    xacc = i[m]
+                    xacc2 = xacc & (2**desp_bits3-1)
+                    xacc >>= desp_bits3
+                    xacc |= xacc2 << (8-desp_bits3)
+                    newnum ^= xacc
+                    self.xoraccums[k][m] = newnum
+                    input_data[idx] = chr(newnum)
+
         slices = len(input_data)//self.padding
+        #print slices, extra_input, len(input_data)
         for i in range(slices):
             space_object = input_data[i*self.padding:(i+1)*self.padding]
             self._add_entropy_object(space_object)
@@ -131,9 +163,12 @@ class Random:
         final_object = []
         for i in range(nvars):
             binnumber = space_object[i*self.size_variables:(i+1)*self.size_variables]
+            if len(binnumber) == 1:  binnumber = binnumber + binnumber
             number = self.from_bin_to_num(binnumber)
             final_object.append(number)
-        o = SpaceObject(final_object,self.size_variables)
+        sz = self.size_variables
+        if sz < 2: sz = 2
+        o = SpaceObject(final_object,sz)
         self.objects.append(o)
         #print(o.get_state())
             
@@ -147,7 +182,25 @@ class Random:
         return n
         
     def compute(self,dryrun = False):
-        mybuffer = self.buffer
+        mybuffer1 = self.buffer
+        mybuffer = ""
+        desp_bits3 =  1
+        for ii in range(len(mybuffer1)//4):
+            newnum = int(mybuffer1[ii*4:ii*4+4],16)
+            
+            
+            for k in self.xoraccums:
+                i = self.xoraccums[k]
+                m = self.icycle % k
+                xacc = i[m]
+                xacc2 = xacc & (2**desp_bits3-1)
+                xacc >>= desp_bits3
+                xacc |= xacc2 << (16-desp_bits3)
+                newnum ^= xacc
+                self.xoraccums[k][m] = newnum
+            mybuffer += "%04x" % abs(newnum & (2**16-1))
+        #print "*", mybuffer1
+        #print ">", mybuffer
         while len(mybuffer)>5:
             newnum = int(mybuffer[:4],16)
             mybuffer = mybuffer[4:]
@@ -188,20 +241,38 @@ class Random:
         
         self.buffer = mybuffer
     
-    def do_work(self,iterations1 = 1, iterations2 = 8, factor = 10, dryrun = False):
+    def do_work(self,iterations1 = 1, iterations2 = 1, factor = 30, dryrun = False):
         assert(len(self.objects)>1) # It's impossible to compute random data with only ONE object. Should be at least 3.
-        
+        desp_bits3 = 1
         #print()
         for i in range(iterations1):
             for j in range(iterations2):
                 for obj in self.objects:
                     obj.advance_time(self.objects,factor=factor)
-            
+                    for idx, val in enumerate(obj.position):
+                        val = int(val)
+                        for k in self.xoraccums:
+                            i = self.xoraccums[k]
+                            m = self.icycle % k
+                            xacc = i[m]
+                            val ^= xacc
+                            obj.position[idx] += val & (2**8-1) - 127
+                            
+                    for idx, val in enumerate(obj.force):
+                        val = int(val)
+                        for k in self.xoraccums:
+                            i = self.xoraccums[k]
+                            m = self.icycle % k
+                            xacc = i[m]
+                            val ^= xacc
+                            obj.force[idx] += val & (2**8-1) - 127
+                            
+                            
             lbuf = [obj.get_hex() for obj in self.objects]
             self.buffer = self.buffer + "".join(lbuf)
             self.compute(dryrun=dryrun)
     
-    def randomize(self,iterations=32, factor = 10):
+    def randomize(self,iterations=32, factor = 1):
         self.do_work(iterations1=iterations, iterations2=1, factor = factor, dryrun = True)
         
     def get_bytes(self, nbytes):
